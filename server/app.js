@@ -42,13 +42,13 @@ app.get('/bands-lazy', async (req, res, next) => {
     const payload = [];
     for(let i = 0; i < allBands.length; i++){
         const band = allBands[i];
-        // Your code here 
+        const bandMusicians = await band.getMusicians({order: [['firstName']]})
         const bandData = {
             id: band.id,
             name: band.name,
             createdAt: band.createdAt,
             updatedAt: band.updatedAt,
-            // Your code here 
+            Musicians: bandMusicians
         };
         payload.push(bandData);
     }
